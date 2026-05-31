@@ -99,3 +99,17 @@
         padding: 20px;
     }
 }
+.bookmarknav{
+    display: flex;
+    flex-direction: row;
+}
+.notification{
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    color: black;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -3,9 +3,20 @@ import './App.css'
 import Nav from './Components/nav'
 import Cards from './Components/cards'
 import Searchbar from './Components/searchbar'
+import Altert from './Components/altert'
 
 const App = () => {
   const [showSearch, setShowSearch] = useState(false);
+  const [bookmarkCount, setBookmarkCount] = useState(0);
+  const [showAltert, setShowAltert] = useState(false);
+
+  const incrementBookmarks = () => {
+    setBookmarkCount(prev => prev + 1);
+    setShowAltert(true);
+    setTimeout(() => {
+      setShowAltert(false);
+    }, 1000);
+  };
 
   const toggleSearch = () => {
     setShowSearch(prev => !prev);
@@ -24,7 +35,7 @@ const App = () => {
     },
     {
       company_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDPLzioKr8pPzSaDsM2WwODrNxEqGP0B-K_Q&s',
-      company_name: 'Google', 
+      company_name: 'Google',
       time: '2 days ago',
       position: 'Frontend Developer',
       job_tag1: 'Full-time',
@@ -116,11 +127,12 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <Nav onSearchClick={toggleSearch} />
+      <Nav onSearchClick={toggleSearch} bookmarkCount={bookmarkCount} />
       {showSearch && <Searchbar />}
+      {showAltert && <Altert />}
       <main className="grid">
         {jobs.map((job, index) => (
-          <Cards key={index} {...job} />
+          <Cards key={index} {...job} onSave={incrementBookmarks} />
         ))}
       </main>
     </div>

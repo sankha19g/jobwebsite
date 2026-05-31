@@ -2,18 +2,20 @@ import './cards.css';
 import { Bookmark } from 'lucide-react';
 
 const Cards = (props) => {
+
     return (
         <div className="card">
+            
             <div className="header">
                 <div className="cardlogo">
                     <img src={props.company_logo} alt={`${props.company_name} logo`} />
                 </div>
-                <div className="savebutton">
+                <button className="savebutton" onClick={props.onSave} >
                     <span>Save</span>
                     <Bookmark size={18} />
-                </div>
+                </button>
             </div>
-            
+
             <div className="body">
                 <div className="company">
                     <div className="name">{props.company_name}</div>
@@ -25,7 +27,7 @@ const Cards = (props) => {
                     <span className="tag">{props.job_tag2}</span>
                 </div>
             </div>
-            
+
             <div className="footer">
                 <div className="text">
                     <div className="wage">{props.wage}</div>
